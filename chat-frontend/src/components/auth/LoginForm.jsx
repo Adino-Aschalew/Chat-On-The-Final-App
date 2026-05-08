@@ -61,7 +61,11 @@ const LoginForm = () => {
     try {
       await googleAuthService.initiateGoogleAuth();
     } catch (error) {
-      toast.error('Google authentication failed');
+      if (error.message.includes('not configured')) {
+        toast.error('Google OAuth is not configured. Please use email/password login.');
+      } else {
+        toast.error(error.message || 'Google authentication failed');
+      }
       setGoogleLoading(false);
     }
   };
