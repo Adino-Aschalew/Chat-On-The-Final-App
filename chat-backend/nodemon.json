@@ -1,0 +1,8 @@
+{
+  "ignore": [
+    "uploads/*",
+    "logs/*",
+    "node_modules/*"
+  ],
+  "ext": "js,json"
+}
