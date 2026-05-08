@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Theme - Telegram Classic */
+  --tg-bg: #FFFFFF;
+  --tg-chat-bg: #E6EBEE;
+  --tg-incoming: #FFFFFF;
+  --tg-outgoing: #DCF8C6;
+  --tg-primary: #3390EC;
+  --tg-primary-gradient: linear-gradient(135deg, #3390EC 0%, #5AA9FF 100%);
+  --tg-text: #000000;
+  --tg-text-secondary: #707579;
+  --tg-accent-green: #4CAF50;
+  --tg-border: #E0E0E0;
+  --tg-shadow: rgba(0, 0, 0, 0.05);
+  --tg-radius: 16px;
+}
+
+.dark {
+  /* Dark Theme - Telegram Modern */
+  --tg-bg: #0E1621;
+  --tg-chat-bg: #17212B;
+  --tg-incoming: #182533;
+  --tg-outgoing: #2B5278;
+  --tg-primary: #3390EC;
+  --tg-primary-gradient: linear-gradient(135deg, #3390EC 0%, #5AA9FF 100%);
+  --tg-text: #E1E3E6;
+  --tg-text-secondary: #8696A0;
+  --tg-accent-green: #4CAF50;
+  --tg-border: #1B242F;
+  --tg-shadow: rgba(0, 0, 0, 0.2);
+  --tg-radius: 16px;
+}
+
+@layer base {
+  body {
+    background-color: var(--tg-bg);
+    color: var(--tg-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .tg-shadow {
+    box-shadow: 0 1px 3px var(--tg-shadow);
+  }
+
+  .tg-glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(var(--tg-bg-rgb), 0.7);
+    border: 1px solid var(--tg-border);
+  }
+
+  .bg-tg-primary {
+    background: var(--tg-primary);
+  }
+
+  .bg-tg-primary-gradient {
+    background: var(--tg-primary-gradient);
+  }
+
+  .text-tg-primary {
+    color: var(--tg-primary);
+  }
+
+  .border-tg-primary {
+    border-color: var(--tg-primary);
+  }
+}
+
+@layer components {
+  .btn-tg {
+    @apply px-6 py-2.5 rounded-[12px] font-medium transition-all duration-200 active:scale-95 flex items-center justify-center gap-2;
+    background: var(--tg-primary-gradient);
+    color: white;
+  }
+
+  .btn-tg:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 12px var(--tg-shadow);
+  }
+
+  .input-tg {
+    @apply w-full px-4 py-3 rounded-[12px] outline-none transition-all duration-200;
+    background-color: var(--tg-incoming);
+    border: 1px solid var(--tg-border);
+    color: var(--tg-text);
+  }
+
+  .input-tg:focus {
+    border-color: var(--tg-primary);
+    box-shadow: 0 0 0 2px rgba(51, 144, 236, 0.2);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tg-text-secondary);
+  border-radius: 10px;
+  opacity: 0.2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tg-primary);
+}
