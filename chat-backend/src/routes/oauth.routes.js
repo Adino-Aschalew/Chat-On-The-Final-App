@@ -18,6 +18,14 @@ const router = express.Router();
  *         description: Server error
  */
 router.get('/google', (req, res, next) => {
+  // Check if Google OAuth is configured
+  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+    return res.status(501).json({
+      success: false,
+      message: 'Google OAuth is not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.'
+    });
+  }
+  
   try {
     // Generate state parameter for security
     const state = Math.random().toString(36).substring(2, 15);
