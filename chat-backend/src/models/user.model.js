@@ -28,11 +28,16 @@ const User = sequelize.define('User', {
   },
   password: {
     type: DataTypes.STRING(255),
-    allowNull: false,
+    allowNull: true, // Made optional for OAuth users
     validate: {
       len: [6, 255],
       notEmpty: true
     }
+  },
+  googleId: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+    unique: true
   },
   role: {
     type: DataTypes.ENUM('ADMIN', 'USER'),
@@ -82,6 +87,10 @@ const User = sequelize.define('User', {
       fields: ['username']
     },
     {
+      unique: true,
+      fields: ['googleId']
+    },
+    {
       fields: ['is_online']
     },
     {
@@ -92,6 +101,7 @@ const User = sequelize.define('User', {
 
 // Instance method to check password
 User.prototype.validatePassword = async function(password) {
+  if (!this.password) return false; // OAuth users may not have password
   return await bcrypt.compare(password, this.password);
 };
 
