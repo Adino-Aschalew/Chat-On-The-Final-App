@@ -114,23 +114,6 @@ function App() {
                   />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
-                  path="/admin/profile/:userId"
-                  element={
-                    <ProtectedRoute requiredRole="ADMIN">
-                      <AdminProfile />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/settings"
-                  element={
-                    <ProtectedRoute requiredRole="ADMIN">
-                      <AdminSettings />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
               </SystemProvider>
             </SocketProvider>
           </NotificationProvider>
